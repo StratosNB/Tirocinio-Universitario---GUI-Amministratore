@@ -6,13 +6,18 @@ public class Client {
 
 	private String clientID;
 	private String clientName;
+	private String ownerUserID;
+
+	public Client(String clientID) {
+		this.clientID = clientID;
+	}
 
 	public Client(String clientID, String clientName) {
 
 		this.clientID = clientID;
 		this.clientName = clientName;
 	}
-	
+
 	public Client(List<String> data) {
 
 		this.clientID = clientID;
@@ -37,5 +42,13 @@ public class Client {
 
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
+	}
+
+	public String getOwnerUserID() {
+		return ownerUserID;
+	}
+
+	public void setOwnerUserID(String ownerUserID) {
+		this.ownerUserID = ownerUserID;
 	}
 }

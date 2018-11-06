@@ -8,37 +8,15 @@ public class User {
 	private String Name;
 	private String Surname;
 	private String Password;
+	private ArrayList<Client> clientsOwned;
+	private String[] userClientsID;
+
 	private String clientID;
-	
+
 	private ArrayList<String> userData;
-	
-	
+
 	public User() {
 
-	}
-
-	public User(String userID, String name, String surname, String codiceFiscale, String password, String clientID) {
-
-		this.UserID = userID;
-		this.Name = name;
-		this.Surname = surname;
-		this.Password = password;
-		this.clientID = clientID;
-		
-		this.userData.add(userID);
-		this.userData.add(name);
-		this.userData.add(surname);
-		this.userData.add(password);
-		this.userData.add(clientID);
-	}
-	
-	public User(ArrayList<String> data) {
-
-		this.UserID = data.get(0);
-		this.Name = data.get(1);
-		this.Surname = data.get(2);
-		this.Password = data.get(3);
-		this.clientID = data.get(4);
 	}
 
 	public String getUserID() {
@@ -72,20 +50,43 @@ public class User {
 	public void setPassword(String password) {
 		this.Password = password;
 	}
-	
+
 	public String getClientID() {
 		return this.clientID;
 	}
-	
+
 	public void setClientID(String client) {
 		// TODO Auto-generated method stub
 		this.clientID = client;
 	}
-	
-	public ArrayList<String> getUserData(){	
+
+	public ArrayList<String> getUserData() {
 		return this.userData;
-		
+
 	}
 
+	public ArrayList<Client> getClientsOwned() {
+		return clientsOwned;
+	}
+
+	public void setClientsOwned(ArrayList<Client> clientsID) {
+		this.clientsOwned.addAll(clientsID);
+	}
+
+	/*public String[] getUserClientsID() {
+		String[] clientsID = new String[clientsOwned.size()];
+
+		for (int i = 0; i < clientsOwned.size(); i++) {
+			clientsID[i] = clientsOwned.get(i).getClientID();
+
+			System.out.println("Method getUserClientsID, ID:" + clientsID[i]);
+		}
+
+		return clientsID;
+	}*/
+
+	public void setUserClientsID(String[] userClientsID) {
+		this.userClientsID = userClientsID;
+	}
 
 }
