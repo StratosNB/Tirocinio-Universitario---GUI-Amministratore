@@ -4,13 +4,10 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
-import db.beans.UserBean;
+import db.hibernate.service.UserService;
 import models.User;
 import view.userPanes.PaneRegisterUser;
 import view.userPanes.PaneUser;
-import view.userPanes.UserView;
 
 public class PaneRegisterUserController {
 
@@ -18,12 +15,12 @@ public class PaneRegisterUserController {
 
 	private PaneRegisterUser paneRegisterUser;
 
-	private UserBean userBean = new UserBean();
+	private UserService userService = new UserService();
 
 	public PaneRegisterUserController(PaneUser pUser) {
 
 		this.paneUser = pUser;
-		
+
 		this.paneRegisterUser = pUser.getPaneRegisterUser();
 
 		paneRegisterUser.addNavListener(new NavListener());
@@ -64,17 +61,7 @@ public class PaneRegisterUserController {
 			switch (e.getActionCommand()) {
 
 			case "Register":
-
-				if (paneRegisterUser.isEmptyFieldData()) {
-					JOptionPane.showMessageDialog(null, "Some fields are empty");
-					return;
-				}
-
-				if (userBean.create(user) != null) {
-
-					JOptionPane.showMessageDialog(null, "New user registered successfully.");
-
-				}
+				userService.persist(user);
 				break;
 
 			}

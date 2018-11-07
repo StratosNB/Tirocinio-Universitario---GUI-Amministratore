@@ -11,15 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import db.beans.AttributeBean;
-import models.Attribute;
+import models.UserAttribute;
 import view.attributePanes.AttributesView;
 import view.clientPanes.PaneClient;
 import view.userPanes.ClientAttributeSetManagement;
 
 public class PaneClientAttributeSetController {
-
-	private AttributeBean beanClients = new AttributeBean("clients_attribute_set");
 
 	private ClientAttributeSetManagement paneClientAttributeSet;
 
@@ -66,7 +63,7 @@ public class PaneClientAttributeSetController {
 
 	class CRUDListener implements ActionListener {
 
-		Attribute attribute = paneClientAttributeSet.getNewAttributeName();
+		UserAttribute attribute = paneClientAttributeSet.getNewAttributeName();
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -83,25 +80,7 @@ public class PaneClientAttributeSetController {
 					return;
 				}
 
-				if (beanClients.create(attribute) != null) {
-
-					JOptionPane.showMessageDialog(null, "New user attribute created successfully");
-					// Adds Components to the attributesView for the user
-					/*
-					 * attributeSetView.getAttribPanel().add(new
-					 * JLabel(attribute.getAttributeName()), "right");
-					 * attributeSetView.getAttribPanel().add(new
-					 * JTextField(15)); attribSetPanel.add(new
-					 * JButton("Update")); attribSetPanel.add(new
-					 * JButton("Remove"));
-					 */
-
-					System.out.println("new attribute name : " + attribute.getAttributeName());
-					paneClientAttributeSet.revalidate();
-
-					paneClientAttributeSet.getNewAttributeNameTextField().setText("");
-
-				}
+				
 			case "Update":
 
 			case "Remove":
@@ -111,27 +90,27 @@ public class PaneClientAttributeSetController {
 
 	public void initComponents() throws SQLException {
 
-		int numOClientAttributes = beanClients.getRowCount();
+		/*int numOClientAttributes = beanClients.getRowCount();
 		ArrayList<JLabel> clientAttribLbls = createClientLabels(numOClientAttributes);
 
 		ArrayList<JTextField> clientAttribTxts = createTextFields(numOClientAttributes);
 
 		JPanel clientAttribPane = this.clientAttribView.getAttribPanel();
 
-		/*
+		
 		 * for (int i = 0; i < numOfUserAttributes; i++) {
 		 * 
 		 * registerUserPane.add(userAttribLbls.get(i), "right");
 		 * registerUserPane.add(userAttribTxts.get(i));
 		 * 
 		 * }
-		 */
+		 
 
 		for (int i = 0; i < numOClientAttributes; i++) {
 
 			clientAttribPane.add(clientAttribLbls.get(i), "right");
 			clientAttribPane.add(clientAttribTxts.get(i));
-		}
+		}*/
 
 	}
 
@@ -139,13 +118,13 @@ public class PaneClientAttributeSetController {
 
 		ArrayList<JLabel> labels = new ArrayList<JLabel>();
 
-		if (!(numOfAttributes == 0)) {
+		/*if (!(numOfAttributes == 0)) {
 			ArrayList<Attribute> attributes = beanClients.getAllFromClients();
 
 			for (int i = 0; i < numOfAttributes; i++) {
 				labels.add(new JLabel(attributes.get(i).getAttributeName().trim()));
 			}
-		}
+		}*/
 
 		return labels;
 
@@ -163,17 +142,6 @@ public class PaneClientAttributeSetController {
 
 		return txtFs;
 
-	}
-
-	public void closeConnection() {
-
-		try {
-
-			beanClients.getRowSet().close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

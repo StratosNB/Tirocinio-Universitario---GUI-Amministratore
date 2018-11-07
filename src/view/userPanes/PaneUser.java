@@ -84,24 +84,6 @@ public class PaneUser extends JPanel {
 		return panel;
 	}
 
-	public void addCrudListener(ActionListener crudListener) {
-		// TODO Auto-generated method stub
-		searchButton.addActionListener(crudListener);
-		createButton.addActionListener(crudListener);
-		updateButton.addActionListener(crudListener);
-		deleteButton.addActionListener(crudListener);
-
-	}
-
-	public void addNavListener(ActionListener navListener) {
-		// TODO Auto-generated method stub
-		firstButton.addActionListener(navListener);
-		prevButton.addActionListener(navListener);
-		nextButton.addActionListener(navListener);
-		lastButton.addActionListener(navListener);
-
-	}
-
 	public UserView getUserView() {
 		return this.theUserView;
 	}
@@ -122,4 +104,21 @@ public class PaneUser extends JPanel {
 		return createButton;
 	}
 
+	public void addCrudListener(ActionListener crudListener) {
+		// TODO Auto-generated method stub
+		searchButton.addActionListener(crudListener);
+		createButton.addActionListener(crudListener);
+		updateButton.addActionListener(crudListener);
+		deleteButton.addActionListener(crudListener);
+
+	}
+
+	public void addNavListener(ActionListener navListener) {
+		// TODO Auto-generated method stub
+		firstButton.addActionListener(navListener);
+		prevButton.addActionListener(navListener);
+		nextButton.addActionListener(navListener);
+		lastButton.addActionListener(navListener);
+
+	}
 }

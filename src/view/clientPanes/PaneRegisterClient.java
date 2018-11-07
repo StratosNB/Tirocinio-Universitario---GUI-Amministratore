@@ -26,6 +26,7 @@ public class PaneRegisterClient extends JPanel {
 	private JButton finishButton = new JButton("Finish");
 
 	public JTextField txtClientID = new JTextField(5);
+
 	public JTextField txtName = new JTextField(15);
 
 	private JPanel registerClientView;
@@ -88,8 +89,11 @@ public class PaneRegisterClient extends JPanel {
 	public Client getFieldData() {
 		Client client = new Client();
 
-		client.setClientID(txtClientID.getText());
-		client.setClientName(txtName.getText());
+		String clientID = txtClientID.getText();
+		String clientName = txtName.getText();
+
+		client.setClientID(clientID);
+		client.setClientName(clientName);
 
 		System.out.println("method getfieldata: " + client.getClientID() + client.getClientName());
 
@@ -117,4 +121,13 @@ public class PaneRegisterClient extends JPanel {
 	public void addRegListener(ActionListener regListener) {
 		registerButton.addActionListener(regListener);
 	}
+
+	public JTextField getTxtClientID() {
+		return txtClientID;
+	}
+
+	public JTextField getTxtName() {
+		return txtName;
+	}
+
 }

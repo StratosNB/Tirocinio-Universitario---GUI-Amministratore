@@ -4,14 +4,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import models.Attribute;
+import models.UserAttribute;
 import net.miginfocom.swing.MigLayout;
 
 public class AttributesView extends JPanel {
@@ -55,11 +53,11 @@ public class AttributesView extends JPanel {
 		return this.scrollablePanel;
 	}
 
-	public ArrayList<Attribute> getFieldData(String who, String id) {
+	public ArrayList<UserAttribute> getFieldData(String who, String id) {
 
-		ArrayList<Attribute> attributes = new ArrayList<Attribute>();
-		Attribute attribute = new Attribute();
-
+		ArrayList<UserAttribute> attributes = new ArrayList<UserAttribute>();
+		UserAttribute attribute = new UserAttribute();
+/*
 		for (int i = 0; i < getAttribPanel().getComponentCount() / 2; i++) {
 
 			Component[] c = getAttribPanel().getComponents();
@@ -80,11 +78,11 @@ public class AttributesView extends JPanel {
 
 			attributes.add(attribute);
 
-		}
+		}*/
 		return attributes;
 	}
 
-	public void setFieldData(ArrayList<Attribute> attributes) {
+	public void setFieldData(ArrayList<UserAttribute> attributes) {
 		// TODO Auto-generated method stub
 
 	}

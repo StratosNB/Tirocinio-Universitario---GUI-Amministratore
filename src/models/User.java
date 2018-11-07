@@ -1,92 +1,88 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
 
-	private String UserID;
-	private String Name;
-	private String Surname;
-	private String Password;
-	private ArrayList<Client> clientsOwned;
-	private String[] userClientsID;
-
-	private String clientID;
-
-	private ArrayList<String> userData;
+	@Id
+	@Column(name = "userid")
+	private String id;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "surname")
+	private String surname;
+	
+	@Column(name = "password")
+	private String password;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Client> clients = new HashSet();
+	
+	//private Set<ClientAttribute> Attributes = new HashSet();
 
 	public User() {
 
 	}
 
+	/* getters and setters*/
+
 	public String getUserID() {
-		return this.UserID;
+		return this.id;
 	}
 
 	public void setUserID(String userID) {
-		this.UserID = userID;
+		this.id = userID;
 	}
 
 	public String getName() {
-		return this.Name;
+		return this.name;
 	}
 
 	public void setName(String name) {
-		this.Name = name;
+		this.name = name;
 	}
 
 	public String getSurname() {
-		return this.Surname;
+		return this.surname;
 	}
 
 	public void setSurname(String surname) {
-		this.Surname = surname;
+		this.surname = surname;
 	}
 
 	public String getPassword() {
-		return this.Password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
-		this.Password = password;
+		this.password = password;
 	}
 
-	public String getClientID() {
-		return this.clientID;
+	public Set<Client> getClients() {
+		return clients;
 	}
 
-	public void setClientID(String client) {
-		// TODO Auto-generated method stub
-		this.clientID = client;
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}
 
-	public ArrayList<String> getUserData() {
-		return this.userData;
-
+/*	public Set<ClientAttribute> getAttributes() {
+		return Attributes;
 	}
 
-	public ArrayList<Client> getClientsOwned() {
-		return clientsOwned;
-	}
-
-	public void setClientsOwned(ArrayList<Client> clientsID) {
-		this.clientsOwned.addAll(clientsID);
-	}
-
-	/*public String[] getUserClientsID() {
-		String[] clientsID = new String[clientsOwned.size()];
-
-		for (int i = 0; i < clientsOwned.size(); i++) {
-			clientsID[i] = clientsOwned.get(i).getClientID();
-
-			System.out.println("Method getUserClientsID, ID:" + clientsID[i]);
-		}
-
-		return clientsID;
+	public void setAttributes(Set<ClientAttribute> attributes) {
+		Attributes = attributes;
 	}*/
-
-	public void setUserClientsID(String[] userClientsID) {
-		this.userClientsID = userClientsID;
-	}
 
 }

@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
-import models.Attribute;
+import models.UserAttribute;
 import net.miginfocom.swing.MigLayout;
 import view.attributePanes.AttributeSetView;
 
@@ -94,8 +94,8 @@ public class ClientAttributeSetManagement extends JPanel {
 
 	}
 
-	public Attribute getNewAttributeName() {
-		Attribute attribute = new Attribute();
+	public UserAttribute getNewAttributeName() {
+		UserAttribute attribute = new UserAttribute();
 		attribute.setAttributeName(newAttributeSetNameTxt.getText());
 		
 		System.out.println("method get new attribute name : " + newAttributeSetNameTxt.getText());
