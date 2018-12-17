@@ -1,0 +1,4 @@
+function getPlanet(){
+	return "Mars";
+}
+

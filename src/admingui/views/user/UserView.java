@@ -13,12 +13,11 @@ import javax.swing.JPanel;
 import admingui.models.Attribute;
 import admingui.models.User;
 import admingui.views.NavigationButtonsPanel;
-import admingui.views.attribute.shared.AdditionalAttributesPanel;
+import admingui.views.attributes.dialogs_panels.AdditionalAttributesPanel;
 import admingui.views.user.dialogs.AddUserDialog;
-import admingui.views.user.dialogs.AssignClientsDialog;
-import admingui.views.user.dialogs.AssignedClientsDialog;
 import admingui.views.user.dialogs.EditUserDialog;
 import admingui.views.user.dialogs.SearchUserDialog;
+
 import net.miginfocom.swing.MigLayout;
 
 public class UserView {
@@ -44,15 +43,12 @@ public class UserView {
 	private JLabel userRole;
 
 	private JButton assignedClients;
-	private JButton assignClients;
 	private JButton edit;
 	private JButton search;
 
 	private AddUserDialog dialogAddUser;
 	private EditUserDialog dialogEditUser;
 	private SearchUserDialog dialogSearchUser;
-	private AssignedClientsDialog dialogAssignedClients;
-	private AssignClientsDialog dialogAssignClients;
 
 	public UserView() {
 		initComponents();
@@ -85,8 +81,7 @@ public class UserView {
 	}
 
 	protected void initButtons() {
-		assignedClients = new JButton("Clients");
-		assignClients = new JButton("Assign Clients...");
+		assignedClients = new JButton("Clients...");
 		search = new JButton("Search...");
 		edit = new JButton("Edit...");
 	}
@@ -95,8 +90,6 @@ public class UserView {
 		dialogAddUser = new AddUserDialog();
 		dialogEditUser = new EditUserDialog();
 		dialogSearchUser = new SearchUserDialog();
-		dialogAssignedClients = new AssignedClientsDialog();
-		dialogAssignClients = new AssignClientsDialog();
 	}
 
 	protected void initMainPanel() {
@@ -104,8 +97,7 @@ public class UserView {
 		mainPanel.add(createFixedAttributesPanel());
 		mainPanel.add(createButtonsPanel(), "wrap");
 		mainPanel.add(attributesPanel.getScrollPane(), "span");
-		mainPanel.add(navPanel.getMainPanel(), " south");
-		mainPanel.setVisible(true);
+		mainPanel.add(navPanel.getMainPanel(), "south");
 	}
 
 	protected JPanel createFixedAttributesPanel() {
@@ -125,7 +117,6 @@ public class UserView {
 
 	protected JPanel createButtonsPanel() {
 		JPanel panel = new JPanel(new MigLayout("wrap 1", "[]", "[][][][]"));
-		panel.add(assignClients, "cell 0 0,aligny top");
 		panel.add(search, "cell 0 2");
 		panel.add(edit, "cell 0 3");
 		return panel;
@@ -156,7 +147,6 @@ public class UserView {
 
 	public void addUserViewButtonsListener(ActionListener e) {
 		assignedClients.addActionListener(e);
-		assignClients.addActionListener(e);
 		search.addActionListener(e);
 		edit.addActionListener(e);
 		navPanel.getDeleteButton().addActionListener(e);
@@ -173,8 +163,6 @@ public class UserView {
 	public void addCancelListener(ActionListener e) {
 		dialogAddUser.addListener(e);
 		dialogEditUser.addListener(e);
-		dialogAssignedClients.addCancelListener(e);
-		// dialogAssignClients.addListener(e);
 	}
 
 	public void addDialogsListener(ActionListener e) {
@@ -217,14 +205,6 @@ public class UserView {
 
 	public SearchUserDialog getDialogSearchUser() {
 		return dialogSearchUser;
-	}
-
-	public AssignedClientsDialog getDialogAssignedClients() {
-		return dialogAssignedClients;
-	}
-
-	public AssignClientsDialog getDialogAssignClients() {
-		return dialogAssignClients;
 	}
 
 	public NavigationButtonsPanel getNavButtonsPanel() {

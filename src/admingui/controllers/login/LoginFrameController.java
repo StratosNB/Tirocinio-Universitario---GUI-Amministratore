@@ -8,26 +8,22 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import admingui.views.MainFrame;
-import admingui.views.login.FrameLogin;
+import admingui.views.login.LoginFrame;
 
 public class LoginFrameController {
 
 	private JFrame loginFrame;
-	private FrameLogin paneLogin;
+	private LoginFrame paneLogin;
 
 	private MainFrame mainFrame;
 
 	// private UserDAO userDAO = new UserDAO();
 
-	public LoginFrameController(FrameLogin loginFrame, MainFrame mainFrame) {
+	public LoginFrameController(LoginFrame loginFrame, MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.loginFrame = loginFrame.getMainFrame();
 		this.paneLogin = loginFrame;
 		loginFrame.addLoginListener(new LoginListener());
-	}
-
-	public void showLoginFrame() {
-		loginFrame.setVisible(true);
 	}
 
 	class LoginListener implements ActionListener {
@@ -43,14 +39,12 @@ public class LoginFrameController {
 				pswd = paneLogin.getPasswordInput();
 
 				loginFrame.dispose();
-				// JOptionPane.showMessageDialog(loginFrame, " Login
-				// Successful");
-				JOptionPane.showMessageDialog(loginFrame, "         Login Successful");
+				JOptionPane.showMessageDialog(loginFrame, "          Login Successful");
 
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							mainFrame.getFrame().setVisible(true);
+							mainFrame.getMainFrame().setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

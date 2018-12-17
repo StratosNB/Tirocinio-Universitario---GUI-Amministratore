@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 import admingui.db.services.ClientService;
-import admingui.utils.AdminGuiStrings;
+import admingui.utils.AdminGuiComponentsConstants;
 
 @SuppressWarnings("serial")
 public class AvailableClientTableModel extends DefaultTableModel {
@@ -20,7 +20,7 @@ public class AvailableClientTableModel extends DefaultTableModel {
 	}
 
 	public void addColumnNames() {
-		for (String columnName : AdminGuiStrings.clientTableColumns) {
+		for (String columnName : AdminGuiComponentsConstants.CLIENT_TABLE_COLUMNS) {
 			super.addColumn(columnName);
 		}
 	}

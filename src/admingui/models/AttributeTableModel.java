@@ -6,8 +6,10 @@ import javax.swing.table.DefaultTableModel;
 
 import admingui.db.contract.DbContract;
 import admingui.db.services.ClientAttributeService;
+import admingui.db.services.EnviromentAttributeService;
+import admingui.db.services.ObjectAttributeService;
 import admingui.db.services.UserAttributeService;
-import admingui.utils.AdminGuiStrings;
+import admingui.utils.AdminGuiComponentsConstants;
 
 @SuppressWarnings("serial")
 public class AttributeTableModel extends DefaultTableModel {
@@ -16,8 +18,13 @@ public class AttributeTableModel extends DefaultTableModel {
 
 	private UserAttributeService userAttributeService;
 	private ClientAttributeService clientAttributeService;
+	private ObjectAttributeService objectsAttributesService;
+	private EnviromentAttributeService enviromentAttributesService;
 
-	private List<Attribute> allAttributes;
+	private List<Attribute> usersAttributes;;
+	private List<Attribute> clientsAttributes;
+	private List<Attribute> objectAttributes;
+	private List<Attribute> enviromentAttributes;
 
 	public AttributeTableModel(String dbTableName) {
 		this.dbTableName = dbTableName;
@@ -29,26 +36,59 @@ public class AttributeTableModel extends DefaultTableModel {
 	protected void initServices(String tableName) {
 		if (tableName.equals(DbContract.USERS_ATTRIBUTES_TABLE_NAME)) {
 			userAttributeService = new UserAttributeService();
-			allAttributes = userAttributeService.getAllUserAttributes();
+			usersAttributes = userAttributeService.getAllUserAttributes();
 			return;
 		}
 		if (tableName.equals(DbContract.CLIENTS_ATTRIBUTES_TABLE_NAME)) {
 			clientAttributeService = new ClientAttributeService();
-			allAttributes = clientAttributeService.getAllClientAttributes();
+			clientsAttributes = clientAttributeService.getAllClientAttributes();
+			return;
+		}
+		if (tableName.equals(DbContract.OBJECT_ATTRIBUTES_TABLE_NAME)) {
+			objectsAttributesService = new ObjectAttributeService();
+			objectAttributes = objectsAttributesService.getAllAttributes();
+			return;
+		}
+		if (tableName.equals(DbContract.ENVIROMENT_ATTRIBUTES_TABLE_NAME)) {
+			enviromentAttributesService = new EnviromentAttributeService();
+			enviromentAttributes = enviromentAttributesService.getAllAttributes();
 			return;
 		}
 	}
 
 	public void addColumnNames() {
-		for (String columnName :  AdminGuiStrings.fixedAttributesTableColumns) {
+		for (String columnName : AdminGuiComponentsConstants.FIXED_ATTRIBUTES_TABLE_COLUMNS) {
 			super.addColumn(columnName);
 		}
 	}
 
 	public void addData() {
-		for (Attribute attribute : allAttributes) {
-			Object[] attributeData = { attribute.getName().trim(), attribute.getType().trim() };
-			super.addRow(attributeData);
+		if (usersAttributes != null) {
+			for (Attribute attribute : usersAttributes) {
+				Object[] attributeData = { attribute.getName().trim(), attribute.getType().trim() };
+				super.addRow(attributeData);
+			}
+		}
+
+		if (clientsAttributes != null) {
+			for (Attribute attribute : clientsAttributes) {
+				Object[] attributeData = { attribute.getName().trim(), attribute.getType().trim() };
+				super.addRow(attributeData);
+			}
+		}
+
+		if (objectAttributes != null && !objectAttributes.isEmpty()) {
+			for (Attribute attribute : objectAttributes) {
+				System.out.println(attribute.toString());
+				Object[] attributeData = { attribute.getName().trim(), attribute.getType().trim() };
+				super.addRow(attributeData);
+			}
+		}
+		if (enviromentAttributes != null) {
+			for (Attribute attribute : enviromentAttributes) {
+				Object[] attributeData = { attribute.getName().trim(), attribute.getType().trim() };
+				super.addRow(attributeData);
+			}
 		}
 	}
 

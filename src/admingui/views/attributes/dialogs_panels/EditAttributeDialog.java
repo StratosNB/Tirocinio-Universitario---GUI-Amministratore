@@ -1,4 +1,4 @@
-package admingui.views.attribute.dialogs;
+package admingui.views.attributes.dialogs_panels;
 
 import java.awt.event.ActionListener;
 
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import admingui.models.Attribute;
-import admingui.utils.AdminGuiStrings;
+import admingui.utils.AdminGuiComponentsConstants;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -48,7 +48,7 @@ public class EditAttributeDialog {
 
 	protected void initTexts() {
 		attributeName = new JTextField(12);
-		attributesTypes = new JComboBox<String>(AdminGuiStrings.attributeValuesTypes);
+		attributesTypes = new JComboBox<String>(AdminGuiComponentsConstants.ATTRIBUTE_VALUES_TYPES);
 		// attributesTypes.setSelectedItem(attribute.getType().toString());
 	}
 

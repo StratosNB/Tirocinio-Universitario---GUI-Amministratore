@@ -1,7 +1,5 @@
-package admingui.views.attribute;
+package admingui.views.attributes.client_user;
 
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
@@ -12,7 +10,8 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 
 import admingui.db.contract.DbContract;
-import admingui.utils.AdminGuiStrings;
+import admingui.utils.AdminGuiComponentsConstants;
+
 import net.miginfocom.swing.MigLayout;
 
 public class AttributesPanel {
@@ -36,10 +35,12 @@ public class AttributesPanel {
 	}
 
 	protected void initTables() {
-		userFixedAttributesTable = new JTable(AdminGuiStrings.userFixedAttributesTableData,
-				AdminGuiStrings.fixedAttributesTableColumns);
-		clientFixedAttributesTable = new JTable(AdminGuiStrings.clientFixedAttributesTableData,
-				AdminGuiStrings.fixedAttributesTableColumns);
+		userFixedAttributesTable = new JTable(AdminGuiComponentsConstants.USERS_FIXED_ATTRIBUTES_TABLE_DATA,
+				AdminGuiComponentsConstants.FIXED_ATTRIBUTES_TABLE_COLUMNS);
+		userFixedAttributesTable.setFillsViewportHeight(true);
+		clientFixedAttributesTable = new JTable(AdminGuiComponentsConstants.CLIENTS_FIXED_ATTRIBUTES_TABLE_DATA,
+				AdminGuiComponentsConstants.FIXED_ATTRIBUTES_TABLE_COLUMNS);
+		clientFixedAttributesTable.setFillsViewportHeight(true);
 
 		userAdditionalAttributesPanel = new AdditionalAttributesTablePanel(DbContract.USERS_ATTRIBUTES_TABLE_NAME);
 		clientAdditionalAttributesPanel = new AdditionalAttributesTablePanel(DbContract.CLIENTS_ATTRIBUTES_TABLE_NAME);
@@ -47,42 +48,46 @@ public class AttributesPanel {
 
 	protected void initMainPanel() {
 		mainPanel = new JPanel(new MigLayout("wrap 1", "[]", "[][]"));
-		mainPanel.add(createFixedAttributesPanel());
-		mainPanel.add(createAdditionalAttributePanel());
+		mainPanel.add(createUserAttributesPanel());
+		mainPanel.add(createClientsAttributesPanel());
 		mainPanel.setVisible(true);
 	}
 
-	protected JPanel createFixedAttributesPanel() {
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createTitledBorder("Fixed Attributes"));
-		panel.setPreferredSize(new Dimension(435, 190));
-		panel.setLayout(new MigLayout("", "[][]", "[][]"));
-		panel.add(createBoldJlabel("Users"), "cell 0 0");
-		panel.add(createScrollPane(userFixedAttributesTable), "top,cell 0 1");
-		panel.add(createBoldJlabel("Clients"), "cell 1 0");
-		panel.add(createScrollPane(clientFixedAttributesTable), "cell 1 1");
+	protected JPanel createUserAttributesPanel() {
+		JPanel panel = new JPanel(new MigLayout("", "[][]", "0[]0[]0"));
+		panel.setBorder(BorderFactory.createTitledBorder("Users Attributes"));
+		panel.add(createTitlePanel("Fixed"), "cell 0 0");
+		panel.add(createTablePanel(userFixedAttributesTable), "cell 0 1");
+		panel.add(createTitlePanel("Additional"), "cell 1 0");
+		panel.add(userAdditionalAttributesPanel.getMainPanel(), "cell 1 1");
 		return panel;
 	}
 
-	protected JPanel createAdditionalAttributePanel() {
-		JPanel panel = new JPanel(new MigLayout("", "0[]0[]0", "[]0[][]"));
-		panel.setBorder(BorderFactory.createTitledBorder("Additional Attributes"));
-		panel.add(createBoldJlabel("  Users"), "cell 0 0");
-		panel.add(userAdditionalAttributesPanel.getMainPanel(), "cell 0 1");
-		panel.add(createBoldJlabel(" Clients"), "cell 1 0");
+	protected JPanel createClientsAttributesPanel() {
+		JPanel panel = new JPanel(new MigLayout("", "[][]", "0[]0[]0"));
+		panel.setBorder(BorderFactory.createTitledBorder("Clients Attributes"));
+		panel.add(createTitlePanel("Fixed"), "cell 0 0");
+		panel.add(createTablePanel(clientFixedAttributesTable), "cell 0 1");
+		panel.add(createTitlePanel("Additional"), "cell 1 0");
 		panel.add(clientAdditionalAttributesPanel.getMainPanel(), "cell 1 1");
 		return panel;
 	}
 
-	protected JLabel createBoldJlabel(String name) {
-		JLabel lbl = new JLabel(name);
-		lbl.setFont(new Font("Tahoma", Font.BOLD, 11));
-		return lbl;
+	protected JPanel createTitlePanel(String title) {
+		JPanel panel = new JPanel(new MigLayout("", "[]0", "0[]0"));
+		panel.add(new JLabel(title));
+		return panel;
 	}
 
-	protected JScrollPane createScrollPane(JTable table) {
+	protected JPanel createTablePanel(JTable table) {
+		JPanel panel = new JPanel(new MigLayout());
+		panel.add(createTableScrollPane(table));
+		return panel;
+	}
+
+	protected JScrollPane createTableScrollPane(JTable table) {
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setPreferredSize(new Dimension(330, 300));
+		// scrollPane.setPreferredSize(new Dimension(330, 225));
 		return scrollPane;
 	}
 
@@ -114,8 +119,8 @@ public class AttributesPanel {
 		userAdditionalAttributesPanel.addCancelListener(e);
 		clientAdditionalAttributesPanel.addCancelListener(e);
 	}
-	
-	public void addTableChangesListener(TableModelListener e){
+
+	public void addTableChangesListener(TableModelListener e) {
 		userAdditionalAttributesPanel.addChangesListener(e);
 		clientAdditionalAttributesPanel.addChangesListener(e);
 	}
@@ -124,8 +129,8 @@ public class AttributesPanel {
 		setCrudButtonsActionCommands();
 		setSubmmitButtonsActionCommands();
 	}
-	
-	protected void setCrudButtonsActionCommands(){
+
+	protected void setCrudButtonsActionCommands() {
 		userAdditionalAttributesPanel.getCreateAttribute().setActionCommand("User Create Dialog");
 		userAdditionalAttributesPanel.getUpdateAttribute().setActionCommand("User Edit Dialog");
 		userAdditionalAttributesPanel.getDeleteAttribute().setActionCommand("Delete User Attribute");
@@ -133,8 +138,8 @@ public class AttributesPanel {
 		clientAdditionalAttributesPanel.getUpdateAttribute().setActionCommand("Client Edit Dialog");
 		clientAdditionalAttributesPanel.getDeleteAttribute().setActionCommand("Delete Client Attribute");
 	}
-	
-	protected void setSubmmitButtonsActionCommands(){
+
+	protected void setSubmmitButtonsActionCommands() {
 		userAdditionalAttributesPanel.getAddAttribute().getOk().setActionCommand("Create User Attribute");
 		userAdditionalAttributesPanel.getEditAttribute().getOk().setActionCommand("Update User Attribute");
 		clientAdditionalAttributesPanel.getAddAttribute().getOk().setActionCommand("Create Client Attribute");

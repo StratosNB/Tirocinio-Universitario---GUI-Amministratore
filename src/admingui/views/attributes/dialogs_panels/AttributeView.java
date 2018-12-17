@@ -1,4 +1,4 @@
-package admingui.views.attribute.shared;
+package admingui.views.attributes.dialogs_panels;
 
 import java.awt.Font;
 

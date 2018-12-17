@@ -12,11 +12,10 @@ import javax.swing.JPanel;
 import admingui.models.Attribute;
 import admingui.models.Client;
 import admingui.views.NavigationButtonsPanel;
-import admingui.views.attribute.shared.AdditionalAttributesPanel;
+import admingui.views.attributes.dialogs_panels.AdditionalAttributesPanel;
 import admingui.views.client.dialogs.AddClientDialog;
 import admingui.views.client.dialogs.EditClientDialog;
 import admingui.views.client.dialogs.SearchClientDialog;
-
 import net.miginfocom.swing.MigLayout;
 
 public class ClientView {

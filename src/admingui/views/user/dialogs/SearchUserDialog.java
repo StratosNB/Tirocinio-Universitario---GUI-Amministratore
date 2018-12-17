@@ -73,7 +73,7 @@ public class SearchUserDialog {
 	protected void initMainDialog() {
 		mainDialog = new JDialog();
 		mainDialog.setTitle("Search an User");
-		mainDialog.setBounds(400, 150, 830, 500);
+		mainDialog.setBounds(400, 150, 830, 400);
 		mainDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainDialog.setModal(true);
 		mainDialog.getContentPane().add(mainPanel);

@@ -10,18 +10,11 @@ import admingui.db.services.ClientAttributeService;
 import admingui.db.services.UserAttributeService;
 import admingui.models.Attribute;
 import admingui.models.AttributeTableModel;
-import admingui.views.attribute.AdditionalAttributesTablePanel;
-import admingui.views.attribute.AttributesPanel;
+import admingui.utils.AdminGuiMessages;
+import admingui.views.attributes.client_user.AdditionalAttributesTablePanel;
+import admingui.views.attributes.client_user.AttributesPanel;
 
-public class AttributesPanelController {
-
-	private final static String EMPTY_NAME_MSG = "      Name can't be empty";
-	private final static String SELECT_ATTRIBUTE_MSG = "      Select an Attribute first";
-	private final static String DELETE_WARNING = "Delete Warning";
-	private final static String DELETE_ATTRIBUTE_MSG = "Do you want to delete this attribute?";
-	private final static String ATTRIBUTE_CREATED__MSG = "New Attribute created successfully";
-	private final static String ATTRIBUTE_UPDATED__MSG = "Attribute updated successfully";
-	private final static String ATTRIBUTE_DELETED__MSG = "Attribute deleted successfully";
+public class UserClientAttributesPanelController {
 
 	private AttributesPanel attribPanel;
 	private AdditionalAttributesTablePanel userAttributePanel;
@@ -36,7 +29,7 @@ public class AttributesPanelController {
 	private AttributeTableModel userAttributesTableModel;
 	private AttributeTableModel clientAttributesTableModel;
 
-	public AttributesPanelController(AttributesPanel attribPanel) {
+	public UserClientAttributesPanelController(AttributesPanel attribPanel) {
 		this.attribPanel = attribPanel;
 		initialize();
 	}
@@ -78,15 +71,15 @@ public class AttributesPanelController {
 	private boolean isAttributeSelected(JTable table, int selectedRow) {
 		selectedRow = table.getSelectedRow();
 		if (selectedRow == -1) {
-			JOptionPane.showMessageDialog(attribPanel.getMainPanel(), SELECT_ATTRIBUTE_MSG);
+			JOptionPane.showMessageDialog(attribPanel.getMainPanel(), AdminGuiMessages.SELECT_ATTRIBUTE_MSG);
 			return false;
 		}
 		return true;
 	}
 
 	private int deleteOption(int deleteOption) {
-		return deleteOption = JOptionPane.showConfirmDialog(attribPanel.getMainPanel(), DELETE_ATTRIBUTE_MSG,
-				DELETE_WARNING, JOptionPane.YES_NO_OPTION);
+		return deleteOption = JOptionPane.showConfirmDialog(attribPanel.getMainPanel(),
+				AdminGuiMessages.DELETE_ATTRIBUTE_MSG, AdminGuiMessages.DELETE_WARNING, JOptionPane.YES_NO_OPTION);
 	}
 
 	private void showMessage(String msg) {
@@ -95,7 +88,7 @@ public class AttributesPanelController {
 
 	private boolean isAddAttributeDialogEmpty(AdditionalAttributesTablePanel panel) {
 		if (panel.getAddAttribute().isEmptyFieldData()) {
-			showMessage(EMPTY_NAME_MSG);
+			showMessage(AdminGuiMessages.EMPTY_NAME_MSG);
 			return true;
 		}
 		return false;
@@ -103,7 +96,7 @@ public class AttributesPanelController {
 
 	private boolean isEditAttributeDialogEmpty(AdditionalAttributesTablePanel panel) {
 		if (panel.getEditAttribute().isEmptyFieldData()) {
-			showMessage(EMPTY_NAME_MSG);
+			showMessage(AdminGuiMessages.EMPTY_NAME_MSG);
 			return true;
 		}
 		return false;
@@ -122,7 +115,7 @@ public class AttributesPanelController {
 			selectedAttribute = userAttributePanel.getSelectedAttribute();
 			userAttributeService.deleteUserAttribute(selectedAttribute.getName());
 			userAttributesTableModel.removeRow(userAttributesTable.getSelectedRow());
-			showMessage(ATTRIBUTE_DELETED__MSG);
+			showMessage(AdminGuiMessages.ATTRIBUTE_DELETED__MSG);
 		}
 	}
 
@@ -139,7 +132,7 @@ public class AttributesPanelController {
 			selectedAttribute = clientAttributePanel.getSelectedAttribute();
 			clientAttributeService.deleteClientAttribute(selectedAttribute.getName());
 			clientAttributesTableModel.removeRow(clientAttributesTable.getSelectedRow());
-			showMessage(ATTRIBUTE_DELETED__MSG);
+			showMessage(AdminGuiMessages.ATTRIBUTE_DELETED__MSG);
 		}
 	}
 
@@ -149,7 +142,7 @@ public class AttributesPanelController {
 			userAttributeService.createUserAttribute(createdAttribute);
 			userAttributesTableModel.addAttributeDataToRow(createdAttribute);
 			userAttributePanel.getAddAttribute().clear();
-			showMessage(ATTRIBUTE_CREATED__MSG);
+			showMessage(AdminGuiMessages.ATTRIBUTE_CREATED__MSG);
 		}
 	}
 
@@ -159,7 +152,7 @@ public class AttributesPanelController {
 			selectedAttribute = userAttributePanel.getSelectedAttribute();
 			userAttributeService.updateUserAttribute(createdAttribute, selectedAttribute.getName());
 			userAttributesTableModel.updateAttributeDataInRow(createdAttribute, selectedAttribute.getName());
-			showMessage(ATTRIBUTE_UPDATED__MSG);
+			showMessage(AdminGuiMessages.ATTRIBUTE_UPDATED__MSG);
 			userAttributePanel.getEditAttribute().dispose();
 		}
 	}
@@ -170,7 +163,7 @@ public class AttributesPanelController {
 			clientAttributeService.createClientAttribute(createdAttribute);
 			clientAttributesTableModel.addAttributeDataToRow(createdAttribute);
 			clientAttributePanel.getAddAttribute().clear();
-			showMessage(ATTRIBUTE_CREATED__MSG);
+			showMessage(AdminGuiMessages.ATTRIBUTE_CREATED__MSG);
 		}
 	}
 
@@ -180,7 +173,7 @@ public class AttributesPanelController {
 			selectedAttribute = clientAttributePanel.getSelectedAttribute();
 			clientAttributesTableModel.updateAttributeDataInRow(createdAttribute, selectedAttribute.getName());
 			clientAttributeService.updateClientAttribute(createdAttribute, selectedAttribute.getName());
-			showMessage(ATTRIBUTE_UPDATED__MSG);
+			showMessage(AdminGuiMessages.ATTRIBUTE_UPDATED__MSG);
 			clientAttributePanel.getEditAttribute().dispose();
 		}
 	}

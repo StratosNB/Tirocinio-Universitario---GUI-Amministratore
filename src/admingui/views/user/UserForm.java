@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import admingui.models.Attribute;
 import admingui.models.User;
-import admingui.utils.AdminGuiStrings;
+import admingui.utils.AdminGuiComponentsConstants;
 import net.miginfocom.swing.MigLayout;
 
 public class UserForm {
@@ -59,7 +59,7 @@ public class UserForm {
 		userId = new JTextField(5);
 		userName = new JTextField(20);
 		userSurname = new JTextField(20);
-		userRoles = new JComboBox<String>(AdminGuiStrings.searchRoles);
+		userRoles = new JComboBox<String>(AdminGuiComponentsConstants.SEARCH_PANEL_ROLES);
 	}
 
 	protected void initMainPanel() {

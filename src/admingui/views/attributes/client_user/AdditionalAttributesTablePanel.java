@@ -1,6 +1,5 @@
-package admingui.views.attribute;
+package admingui.views.attributes.client_user;
 
-import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -13,9 +12,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 import admingui.models.Attribute;
 import admingui.models.AttributeTableModel;
-import admingui.views.attribute.dialogs.AddAttributeDialog;
-import admingui.views.attribute.dialogs.EditAttributeDialog;
-
+import admingui.views.attributes.dialogs_panels.AddAttributeDialog;
+import admingui.views.attributes.dialogs_panels.EditAttributeDialog;
 import net.miginfocom.swing.MigLayout;
 
 public class AdditionalAttributesTablePanel {
@@ -67,7 +65,6 @@ public class AdditionalAttributesTablePanel {
 	protected void initTable() {
 		attributeTable = new JTable(tableModel);
 		attributeTable.setFillsViewportHeight(true);
-		attributeTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	}
 
 	protected void initRenderer() {
@@ -77,15 +74,14 @@ public class AdditionalAttributesTablePanel {
 	}
 
 	protected void initMainPanel() {
-		mainPanel = new JPanel(new MigLayout("", "[]", "[][]15"));
-		mainPanel.setPreferredSize(new Dimension(150, 260));
+		mainPanel = new JPanel(new MigLayout("", "[]", "[][]0"));
 		mainPanel.setVisible(true);
 		mainPanel.add(scrollPane, "cell 0 0");
 		mainPanel.add(createButtonsPanel(), "cell 0 1");
 	}
 
 	protected JPanel createButtonsPanel() {
-		JPanel controlTablePanel = new JPanel(new MigLayout("", "0[][][]0", "push[]0"));
+		JPanel controlTablePanel = new JPanel(new MigLayout("", "[][][]", "[]"));
 		controlTablePanel.add(add);
 		controlTablePanel.add(edit);
 		controlTablePanel.add(delete);
@@ -117,6 +113,10 @@ public class AdditionalAttributesTablePanel {
 	public void addCancelListener(ActionListener e) {
 		addAttribute.getCancel().addActionListener(e);
 		editAttribute.getCancel().addActionListener(e);
+	}
+
+	public void addChangesListener(TableModelListener e) {
+		tableModel.addTableModelListener(e);
 	}
 
 	public AddAttributeDialog getAddAttribute() {
@@ -157,9 +157,5 @@ public class AdditionalAttributesTablePanel {
 
 	public String getTableName() {
 		return tableName;
-	}
-
-	public void addChangesListener(TableModelListener e) {
-		tableModel.addTableModelListener(e);
 	}
 }

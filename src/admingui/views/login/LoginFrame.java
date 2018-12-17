@@ -12,7 +12,9 @@ import javax.swing.border.TitledBorder;
 
 import net.miginfocom.swing.MigLayout;
 
-public class FrameLogin {
+public class LoginFrame {
+
+	private JFrame frame;
 
 	private JTextField userIDInput;
 	private JPasswordField passwordInput;
@@ -20,9 +22,7 @@ public class FrameLogin {
 	private JButton login;
 	private JButton cancel;
 
-	private JFrame frame;
-
-	public FrameLogin() {
+	public LoginFrame() {
 		initComponents();
 	}
 
@@ -43,6 +43,7 @@ public class FrameLogin {
 	}
 
 	protected void initFrame() {
+		
 		frame = new JFrame();
 		frame.getContentPane().setLayout(new MigLayout("wrap 1", "[grow] 16 [grow]"));
 		frame.setTitle("Admin-Login Frame");
@@ -50,7 +51,6 @@ public class FrameLogin {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(createUserCredentialsPanel(), "cell 0 0,alignx right");
-		//frame.getContentPane().add(new JSeparator(SwingConstants.HORIZONTAL));
 		frame.getContentPane().add(createLoginButtonsPanel(), "cell 0 2,alignx right");
 	}
 
@@ -69,6 +69,11 @@ public class FrameLogin {
 		panel.add(login);
 		panel.add(cancel);
 		return panel;
+	}
+
+	public void addLoginListener(ActionListener loginListener) {
+		login.addActionListener(loginListener);
+		cancel.addActionListener(loginListener);
 	}
 
 	public void show() {
@@ -92,10 +97,5 @@ public class FrameLogin {
 
 	public JFrame getMainFrame() {
 		return frame;
-	}
-
-	public void addLoginListener(ActionListener loginListener) {
-		login.addActionListener(loginListener);
-		cancel.addActionListener(loginListener);
 	}
 }
