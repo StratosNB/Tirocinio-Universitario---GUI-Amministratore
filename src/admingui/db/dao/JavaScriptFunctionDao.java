@@ -2,7 +2,7 @@ package admingui.db.dao;
 
 import java.util.List;
 
-import admingui.models.JavaScriptFunction;
+import admingui.model.JavaScriptFunction;
 
 public interface JavaScriptFunctionDao {
 

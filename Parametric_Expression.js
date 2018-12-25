@@ -23,8 +23,13 @@ function getWillName(){
 	return "Will";
 }
 
-function getPlanet(){
-	return "Mars";
+function getLetter(){
+	return "A";
 }
 
-getWillName()
+function getHour(){
+	var date = new Date();
+	return date.hour;
+}
+
+getWillName() == "A"

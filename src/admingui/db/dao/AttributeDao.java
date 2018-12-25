@@ -2,7 +2,7 @@ package admingui.db.dao;
 
 import java.util.List;
 
-import admingui.models.Attribute;
+import admingui.model.Attribute;
 
 public interface AttributeDao {
 

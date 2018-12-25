@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import admingui.models.Attribute;
-import admingui.models.User;
+import admingui.model.Attribute;
+import admingui.model.User;
 
 public interface UserDao {
 
@@ -21,7 +21,5 @@ public interface UserDao {
 
 	public void setAllUsersInTable(JTable table);
 
-	public void setFoundUsersInTable(JTable table, User user, String operator);
-
-	public void getCompletedQuery(List<Attribute> attributes, String operator);
+	public void setFoundUsersInTable(JTable table, User user, List<Attribute> attributes, String operator);
 }

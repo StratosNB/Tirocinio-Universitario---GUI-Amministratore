@@ -2,7 +2,9 @@ package admingui.db.dao;
 
 import java.util.List;
 
-import admingui.models.Client;
+import javax.swing.JTable;
+
+import admingui.model.Client;
 
 public interface ClientDao {
 
@@ -15,10 +17,14 @@ public interface ClientDao {
 	public List<Client> getAllAvailableClients();
 
 	public List<Client> getClientsAssignedToUser(int UserId);
+	
+	public void setAvailableClientsInTable(JTable table);
+	
+	public void setAssignedClientsInTable(JTable table, int userId);
 
 	public void updateClient(Client client, int oldId);
 
-	public void updateClientUserId(int userId);
+	public void updateClientUserId(int userId, int clientId);
 
 	public void deleteClient(int clientId);
 }

@@ -1,4 +1,5 @@
-function getPlanet(){
-	return "Mars";
+function getHour(){
+	var date = new Date();
+	return date.hour;
 }
 
