@@ -49,6 +49,7 @@ public class EditPolicyDialog {
 
 	private JDialog mainDialog;
 	private JPanel mainPanel;
+	
 	private JLabel idLbl;
 	private JLabel topicFilterExpressionLbl;
 	private JLabel parametricPredicateLbl;

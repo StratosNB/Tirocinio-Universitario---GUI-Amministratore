@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/bryan/OneDrive/Documentos/Eclipse/AdminGUI4/lib/spellchecker-2.6.0.jar" sourcepath="C:/Users/bryan/AppData/Local/Temp/.org.sf.feeling.decompiler1544352720967/source/spellchecker-2.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/bryan/OneDrive/Documentos/Eclipse/AdminGUI4/lib/autocomplete-2.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/bryan/OneDrive/Documentos/Eclipse/AdminGUI4/lib/rhino-1.7R4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bryan/OneDrive/Documentos/Eclipse/AdminGUI/lib/jedis-2.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
