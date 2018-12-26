@@ -168,7 +168,7 @@ public class AcPoliciesPanelController {
 			userAcPolicyService.createAcPolicy(newPolicy);
 		}
 		if (radioButtonText.equals("Clients")) {
-			clientAcPolicyService.createAcPolicy(newPolicy);
+			clientAcPolicyService.createAcPolicy(newPolicy);	
 		}
 		allPolicies.add(newPolicy);
 		JOptionPane.showMessageDialog(addPolicyDialog.getMainDialog(), "New Policy created with success");
