@@ -23,6 +23,5 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.zeroturnaround.eclipse.jrebelNature</nature>
 	</natures>
 </projectDescription>
