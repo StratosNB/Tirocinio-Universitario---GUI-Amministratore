@@ -10,6 +10,12 @@ GUI for the system administrator
 
 •	Ricerca degli User e Client in base ai loro attributi.
 
+**Design Patterns:**
+
+1. MVC (Model View Controller)
+2. DAO (Data Access Object)
+3. EAV (Entity Attribute Value)
+
 
 **Tecnologie usate:**
 
