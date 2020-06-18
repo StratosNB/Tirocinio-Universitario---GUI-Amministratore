@@ -2,6 +2,8 @@ GUI for the system administrator
 
 ## **Gestione degli User e Client:**
 
+**Principalli funzionalità:**
+
 •	Visualizzazione, creazione, modifica e cancellazione degli User e Client presenti da parte dell’utente amministratore.
 
 •	Visualizzazione, creazione, modifica e cancellazione degli attributi aggiuntivi degli User e Client e degli attributi di Object e Enviroment da parte dell’utente amministratore.
