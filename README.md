@@ -21,10 +21,11 @@ GUI for the system administrator
 
 **Tecnologie usate:**
 
-1.	Eclipse
-2.	PostgreSQL
-3.	JavaScript
-4.	Redis
+1.	Java
+2. Eclipse
+3.	PostgreSQL
+4.	JavaScript
+5.	Redis
 
 **Librerie esterne:**
 
