@@ -269,9 +269,8 @@ Modificare una User Preference:
 •	Apparirà un messaggio indicando il avvenuto successo della modifica.
 
 
-**	Esportazione su Redis**
+**Esportazione su Redis:**
 
-**Per esportare le Policies e le Preferences su Redis:**
 1.	Nelle finestre di gestione delle Policies/Preferences (Figure 13 e 14) usiamo il bottone “Export...”.
 
 2.	Apparirà un dialogo che ci chiede di confermare l'operazione, confermiamo la nostra selezione con il buttone “Si”.
